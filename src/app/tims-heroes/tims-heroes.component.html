@@ -1,0 +1,24 @@
+<h1>Hero Picker</h1>
+<div class="row">
+  <div class="list-group-horizontal">
+    <img src="assets/the-girls.jpeg" alt="One Piece" style="width:15%" />
+    <!-- ... (rest of the agent images) -->
+  </div>
+</div>
+<div>
+  <br />
+  <p>You must select the heroes you want and hit save before you will see the wheel.</p>
+  <br />
+  <div *ngFor="let hero of heroes">
+    <input type="checkbox" name="hero" [value]="hero.localized_name" (change)="onHeroSelected($event)" /> {{ hero.localized_name }}
+  </div>
+  <button (click)="saveHeroes()">Save</button>
+  <button (click)="checkAll()">Check / Uncheck All</button>
+</div>
+<div class="container">
+  <canvas #canvas height="500" width="500"></canvas>
+  <div class="text-left">
+    <input type="button" value="Spin" (click)="spin()" />
+    <input type="button" value="Clear wheel" (click)="clearWheel()" />
+  </div>
+</div>

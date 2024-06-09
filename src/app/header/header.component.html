@@ -1,0 +1,80 @@
+<!-- <header>
+    <nav>
+        <div class="logo">
+            <a href="#"><img src="dotabuff-logo.png" alt="Dotabuff"></a>
+        </div>
+        <ul class="nav-menu">
+            <li *ngFor="let link of navLinks"><a [href]="link.link">{{ link.label }}</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button>Sign In</button>
+        </div>
+    </nav>
+ </header> -->
+<header>
+  <nav>
+    <div class="logo">
+      <a href="#"><img src="/assets/logo.jpg" alt="Dotabuff"></a>
+    </div>
+    <ul>
+      <mat-tab-group>
+        <mat-tab label="Esports">
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Esports</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Clips</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Series</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Scores</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Leagues</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Players</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Teams</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Matches</button>
+        </mat-tab>
+        <mat-tab label="Heroes">
+          <button class="nav-items" [routerLink]="['/heroes']" mat-menu-item>All Heroes</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Meta</button>
+          <button class="nav-items" [routerLink]="['trends']" mat-menu-item>Trends</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Lanes</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Most Played</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Win Rate</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Game Impact</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Economy</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Farm</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Damage and Healing</button>
+        </mat-tab>
+        <mat-tab label="Items">
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Most Used</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Win Rate</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Game Impact</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Economy</button>
+        </mat-tab>
+        <mat-tab label="Players">
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Verified</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Ranked Leaderboard</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Achievements</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Highest Win Rate</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Most Matches Played</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Time Spent Playing</button>
+        </mat-tab>
+        <mat-tab label="Matches">
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Live Matches</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Recent Esports Matches</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Recent Matches</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Siltbreaker</button>
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Dark Moon</button>
+        </mat-tab>
+        <mat-tab label="Blog">
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Blog</button>
+        </mat-tab>
+        <mat-tab label="Forums">
+          <button class="nav-items" [routerLink]="['/']" mat-menu-item>Forums</button>
+        </mat-tab>
+      </mat-tab-group>
+    </ul>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>Sign In</button>
+    </div>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>
