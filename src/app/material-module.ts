@@ -43,6 +43,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { AppComponent } from './app.component';
+import { FilterPipe } from "./filter.pipe";
 
 @NgModule({
   exports: [
@@ -91,5 +92,6 @@ import { AppComponent } from './app.component';
     PortalModule,
     ScrollingModule,
   ],
+  declarations: [FilterPipe],
 })
 export class DotaRouletteMaterialModule {}

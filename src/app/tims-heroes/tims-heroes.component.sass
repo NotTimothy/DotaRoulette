@@ -14,21 +14,21 @@
   align-items: center
   margin-bottom: 10px
 
-.trend span
-  margin-right: 10px
+  span
+    margin-right: 10px
 
 .hero-list
-  position: relative
-  display: grid
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr))
+  display: flex
+  flex-wrap: wrap
   gap: 10px
 
 .hero-card
   text-align: center
+  flex: 0 0 100px
 
-.hero-card img
-  max-width: 100%
-  height: auto
+  img
+    max-width: 100%
+    height: auto
 
 .hero-name
   display: block
@@ -61,10 +61,10 @@
   background-color: rgba(0, 0, 0, 0.8)
   z-index: 1
 
-.flashing-image img
-  max-width: 100%
-  max-height: 100%
-  animation: flash 0.5s linear infinite
+  img
+    max-width: 100%
+    max-height: 100%
+    animation: flash 0.5s linear infinite
 
 @keyframes flash
   0%
@@ -78,6 +78,6 @@
   text-align: center
   margin-top: 20px
 
-.selected-hero img
-  max-width: 200px
-  height: auto
+  img
+    max-width: 200px
+    height: auto

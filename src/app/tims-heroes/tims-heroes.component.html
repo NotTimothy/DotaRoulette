@@ -9,8 +9,11 @@
   <br />
   <p>You must select the heroes you want and hit save before you will see the wheel.</p>
   <br />
-  <div *ngFor="let hero of heroes">
-    <input type="checkbox" name="hero" [value]="hero.localized_name" (change)="onHeroSelected($event)" /> {{ hero.localized_name }}
+  <div class="hero-list">
+    <div *ngFor="let hero of heroes" class="hero-card">
+      <input type="checkbox" name="hero" [value]="hero.localized_name" (change)="onHeroSelected($event)" />
+      <span>{{ hero.localized_name }}</span>
+    </div>
   </div>
   <button (click)="saveHeroes()">Save</button>
   <button (click)="checkAll()">Check / Uncheck All</button>

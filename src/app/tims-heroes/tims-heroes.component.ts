@@ -8,6 +8,31 @@ import { DotaRouletteMaterialModule } from "../material-module";
 import { NgModel, FormsModule } from "@angular/forms";
 import { NgFor } from "@angular/common";
 
+const heroImageMap: { [key: string]: string } = {
+  "Anti-Mage": 'antimage',
+  "Centaur Warrunner": 'centaur',
+  "Timbersaw": 'shredder',
+  "Magnus": 'magnataur',
+  "Treant Protector": 'treant',
+  "Doom": 'doom_bringer',
+  "Nature's Prophet": 'furion',
+  'Underlord': 'abyssal_underlord',
+  'Io': 'wisp',
+  'Outworld Destroyer': 'obsidian_destroyer',
+  'Necrophos': 'necrolyte',
+  'Clockwerk': 'rattletrap',
+  'Wraith King': 'skeleton_king',
+  'Windranger': 'windrunner',
+  'Zeus': 'zuus',
+  'Shadow Fiend': 'nevermore',
+  'Lifestealer': 'life_stealer',
+  'Vengeful Spirit': 'vengefulspirit',
+  'Queen of Pain': 'queenofpain',
+  'Storm Spirit': 'storm_spirit',
+  // Add more hero mappings as needed
+};
+
+// @ts-ignore
 @Component({
   selector: 'app-heroes',
   templateUrl: './tims-heroes.component.html',
@@ -19,8 +44,10 @@ import { NgFor } from "@angular/common";
     HttpClientModule,
     NgForOf,
     NgOptimizedImage,
+    FormsModule,
+    DotaRouletteMaterialModule,
   ],
-  providers: [HeroService],
+  providers: [HeroService, DotaRouletteMaterialModule],
   standalone: true,
 })
 
@@ -41,6 +68,7 @@ export class TimsHeroesComponent {
   isSpinning: boolean = false;
   selectedHero: HeroDetails | null = null;
   textRadius = 160;
+  searchTerm: string = '';
 
   constructor() {}
 
@@ -52,37 +80,35 @@ export class TimsHeroesComponent {
     this.selectedHeroName = heroName;
   }
 
+  filteredHeroes(): HeroDetails[] {
+    if (!this.searchTerm) return this.heroes;
+
+    const searchTerm = this.searchTerm.toLowerCase();
+    return this.heroes.filter(hero => {
+      return hero.localized_name.toLowerCase().includes(searchTerm);
+    });
+  }
+
   getImages(): void {
     for (let i = 0; i < this.heroes.length; i++) {
-      let name = this.heroes[i].localized_name.replaceAll(' ', '_').toLowerCase();
-      let image = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${name}.png`;
-      if (this.heroes[i].localized_name === 'Magnus') {
-        image = 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/magnataur.png';
-      }
+      const hero = this.heroes[i];
+      const imageName = heroImageMap[hero.localized_name] || hero.localized_name.replaceAll(' ', '_').toLowerCase();
+      const image = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${imageName}.png`;
       this.heroImages.push(image);
     }
   }
 
   getHeroes(): void {
     this.heroService.getHeroes().subscribe((heroes) => {
-      this.heroes = heroes.filter(
-        (hero) =>
-          hero.localized_name === 'Earth Spirit' ||
-          hero.localized_name === 'Pudge' ||
-          hero.localized_name === 'Brewmaster' ||
-          hero.localized_name === 'Magnus'
-      );
+      this.heroes = heroes;
       this.getImages();
     });
   }
 
   getSelectedHeroImage(hero: HeroDetails): string {
-    const name = hero.localized_name.replaceAll(' ', '_').toLowerCase();
-    let image = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${name}.png`;
-    if (hero.localized_name === 'Magnus') {
-      image = 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/magnataur.png';
-    }
-    return image;
+    const name = hero.localized_name;
+    const imageName = heroImageMap[name] || name.replaceAll(' ', '_').toLowerCase();
+    return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${imageName}.png`;
   }
 
   onHeroSelected(event: Event) {
@@ -98,6 +124,13 @@ export class TimsHeroesComponent {
           this.selectedHeroes.splice(index, 1);
         }
       }
+    }
+  }
+
+  addHeroToPool(heroName: string) {
+    const selectedHero = this.heroes.find(hero => hero.localized_name === heroName);
+    if (selectedHero && !this.selectedHeroes.includes(selectedHero)) {
+      this.selectedHeroes.push(selectedHero);
     }
   }
 
@@ -247,5 +280,3 @@ export class TimsHeroesComponent {
     }
   }
 }
-
-
